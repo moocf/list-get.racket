@@ -1,19 +1,19 @@
 #lang racket
 (require eopl)
 
-;; nth-element: List -> Int -> Sch
-;; usage: (nth-element list n) = tnth element of the list (0-index)
-(define nth-element
+;; list.get: List -> Int -> Value
+;; usage: (list.get list n) = nth element of the list (0-index)
+(define list.get
   (lambda (l n)
     (if (null? l)
         (report-list-too-short n)
         (if (zero? n)
             (car l)
-            (nth-element (cdr l) (- n 1))))))
+            (list.get (cdr l) (- n 1))))))
 
 (define report-list-too-short
   (lambda (n)
-    (eopl:error 'nth-element
+    (eopl:error 'list.get
                 "list too short by ~s elements.~%" (+ n 1))))
 
 
@@ -24,7 +24,7 @@
 ; (define id expr):
 ; define global identifier
 
-; (lambda (args...) body) 
+; (lambda (args...) body)
 ; define a function
 
 ; (null? list)
